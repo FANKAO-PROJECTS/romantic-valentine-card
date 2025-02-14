@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Valentine's Day Card</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
@@ -12,12 +12,12 @@
         }
 
         :root {
-            --bg-color: linear-gradient(to bottom, #fef8fb, #fddde6);
-            --card-bg: rgba(252, 239, 230, 0.8); /* Soft Beige with Transparency */
+            --bg-color: #FED3D3; /* Exact cover GIF background color */
+            --card-bg: rgba(252, 239, 230, 0.85);
             --text-color: #5e3b3a;
             --heading-color: #a94c68;
             --accent-color: #e76f8b;
-            --border-radius: 20px;
+            --border-radius: 25px;
             --transition-speed: 0.6s;
         }
 
@@ -33,13 +33,14 @@
             height: 100vh;
             width: 100vw;
             overflow: hidden;
+            touch-action: manipulation;
         }
 
         .container {
-            width: 95vw;
-            height: 92vh;
-            max-width: 460px; /* Increased size for better smartphone fit */
-            max-height: 780px;
+            width: 100vw;
+            height: 95vh;
+            max-width: 480px;
+            max-height: 820px;
             position: relative;
             cursor: pointer;
             display: flex;
@@ -53,14 +54,14 @@
             height: 100%;
             background: var(--card-bg);
             color: var(--heading-color);
-            padding: 30px 20px;
+            padding: 40px 25px;
             border-radius: var(--border-radius);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
             text-align: center;
             transform: scale(0) rotateX(90deg);
             transition: transform var(--transition-speed) ease-in-out, opacity var(--transition-speed);
             opacity: 0;
-            backdrop-filter: blur(20px); /* Increased Blur for a Dreamy Look */
+            backdrop-filter: blur(25px);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -68,7 +69,7 @@
         }
 
         h1 {
-            font-size: 35px;
+            font-size: 38px;
             margin: 5px 0 20px;
             color: var(--accent-color);
             font-family: 'Great Vibes', cursive;
@@ -76,18 +77,18 @@
 
         p {
             font-size: 30px;
-            width: 90%;
-            max-width: 370px;
+            width: 95%;
+            max-width: 400px;
             margin: 10px 0;
-            font-family: 'Great Vibes', cursive; /* Updated to Great Vibes */
+            font-family: 'Great Vibes', cursive;
             line-height: 1.6;
-            padding: 12px;
+            padding: 15px;
             text-align: center;
         }
 
         .gif-container {
-            width: 70%;
-            max-height: 28%;
+            width: 65%;
+            max-height: 30%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -102,9 +103,9 @@
 
         .heart {
             color: var(--accent-color);
-            font-size: 45px;
+            font-size: 50px;
             animation: heartbeat 1s infinite alternate;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         @keyframes heartbeat {
@@ -122,16 +123,15 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: var(--border-radius);
             transition: transform var(--transition-speed), opacity var(--transition-speed);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
         }
 
         .envelope img {
             width: 100%;
             height: 100%;
-            border-radius: var(--border-radius);
-            object-fit: cover;
+            object-fit: contain; /* Ensures the full title is visible */
+            background: var(--bg-color);
+            border-radius: 0;
         }
 
         .falling-container {
@@ -145,7 +145,7 @@
 
         .falling {
             position: absolute;
-            font-size: 20px;
+            font-size: 24px;
             opacity: 0.8;
             animation: fall linear infinite;
         }
@@ -167,9 +167,9 @@
 
         /* Responsive Tweaks */
         @media (max-width: 390px) {
-            h1 { font-size: 26px; margin-bottom: 15px; }
-            p { font-size: 20px; }
-            .heart { font-size: 40px; margin-bottom: 10px; }
+            h1 { font-size: 32px; margin-bottom: 15px; }
+            p { font-size: 22px; }
+            .heart { font-size: 45px; margin-bottom: 10px; }
         }
 
     </style>
@@ -216,7 +216,7 @@
                 music.play();
             } else {
                 music.pause();
-                music.currentTime = 0; // Restart music when closing
+                music.currentTime = 0;
             }
         }
 
@@ -226,7 +226,7 @@
             el.innerHTML = symbol;
             el.style.left = Math.random() * 100 + 'vw';
             el.style.animationDuration = (Math.random() * 3 + 3) + 's';
-            el.style.fontSize = (Math.random() * 10 + 20) + 'px';
+            el.style.fontSize = (Math.random() * 10 + 25) + 'px';
             document.getElementById('falling-container').appendChild(el);
 
             setTimeout(() => el.remove(), 4000);
